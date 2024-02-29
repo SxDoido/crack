@@ -67,57 +67,5 @@ while wait(0.5) do
     end
 end 
 end)
-
-
-local Tab4 = Window:NewTab("Teleport")
-
-local Sectionpf = Tab4:NewSection("Click Teleport")
-
-Sectionpf:NewButton("ТП кликом", "какай", function()
-mouse = game.Players.LocalPlayer:GetMouse()
-tool = Instance.new("Tool")
-tool.RequiresHandle = false
-tool.Name = "Click Teleport"
-tool.Activated:connect(function()
-local pos = mouse.Hit+Vector3.new(0,2.5,0)
-pos = CFrame.new(pos.X,pos.Y,pos.Z)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
-end)
-tool.Parent = game.Players.LocalPlayer.Backpack
-end)
-
-local Sectionpf = Tab4:NewSection("Выбери игрока")
-Plr = {}
-for i,v in pairs(game:GetService("Players"):GetChildren()) do
-    table.insert(Plr,v.Name) 
-end
-local drop = Sectionpf:NewDropdown("Игрок", "Click To Select", Plr, function(t)
-   PlayerTP = t
-end)
-Sectionpf:NewButton("Одноразовое тп", "", function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[PlayerTP].Character.HumanoidRootPart.CFrame
-end)
-Sectionpf:NewToggle("Постояное тп", "", function(t)
-_G.TPPlayer = t
-while _G.TPPlayer do wait()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[PlayerTP].Character.HumanoidRootPart.CFrame
-end
-end)
-
-Sectionpf:NewButton("Перезапустить список игроков","Refresh Dropdown", function()
-  drop:Refresh(Plr)
-end)
-
-local colors = {
-	-- Цвет фона у Секций
-    SchemeColor = Color3.fromRGB(255, 0, 0),
-	-- Цвет фона в правой части UI
-	Background = Color3.fromRGB(128,128,128),
-	-- Цвет фона в левой части UI
-    Header = Color3.fromRGB(255, 255, 255),
-	-- Цвет текста
-    TextColor = Color3.fromRGB(0, 0, 0),
-	-- Цвет фона у кнопок
-    ElementColor = Color3.fromRGB(139, 0, 255)
 }
 local Tab5 = Window:NewTab("Aimbot")
